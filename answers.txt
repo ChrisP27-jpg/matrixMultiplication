@@ -1,0 +1,29 @@
+Christopher Painter
+
+Q1: Because more threads doesn't automatically mean more speed. If you have 100 threads, 
+	 then 4 processors are going to be doing a lot of work switching between the different thread contexts.
+	 It takes time to swap between and manage all these threads.
+	 
+Q2: My program absolutely sees this on the biggest matrices. For some reason 250 threads really gives it a hard time.
+	 I should say, my code is a little wrong, something goes wrong in the middle of the large matrix but the end of the matrix 
+	 looks like the correct value. It works perfectly on medium and small. So something seems to be going wrong in the middle of the matrix.
+	 
+	 200 threads:
+Incorrect! Your matrices did not multiply properly. Check your solution and try again.
+This operation took 1.891453 seconds
+cpainte1@remote00:~/cs350/proj4/proj4-base$
+
+	 250 threads:
+Incorrect! Your matrices did not multiply properly. Check your solution and try again.
+This operation took 23.120970 seconds
+cpainte1@remote00:~/cs350/proj4/proj4-base$ 
+
+	300 threads:
+Incorrect! Your matrices did not multiply properly. Check your solution and try again.
+This operation took 1.900934 seconds
+cpainte1@remote00:~/cs350/proj4/proj4-base$
+
+Q3: I did not use locks in my solution. It is not necessary to use locks in this case. Instead of using locks
+	 I just determined which rows of the matrix each thread would calculate before creating the thread, then
+	 I passed in this boundary into the threads function so the thread could calculate the rows it needs to 
+	 and finish.
